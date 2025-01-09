@@ -27,6 +27,15 @@ function rotate_touch () {
   esac
 }
 
+if [[ -z "$FORCE_RESOLUTION" ]]
+then
+  echo "Automatic resolution, listing modes:"
+  xrandr
+else
+  echo "Forcing resolution: $FORCE_RESOLUTION"
+  xrandr -s $FORCE_RESOLUTION
+fi
+
 if [[ -z "$WINDOW_SIZE" ]]; then
   # detect the window size from the framebuffer file
   echo "Detecting window size from framebuffer"
